@@ -97,7 +97,6 @@ function allCategory(list) {
   const listCategoryUnique = [];
   listTotal.forEach((el) => {
     if (!listCategoryUnique.includes(el)) {
-      //listCategoryUnique = listCategoryUnique.concat([el])
       listCategoryUnique.push(el);
     }
   });
@@ -119,8 +118,6 @@ function allDates(list) {
 
 const allDate = allDates(veilles);
 
-// console.log(allDate);
-
 function sortByDate(list) {
   const dateFormat = "DD/MM/YYYY";
   /* devrait retourner l'array triée pas dates, moment.js est chargé dans ce pen !!  */
@@ -129,28 +126,20 @@ function sortByDate(list) {
 
 function allSujets(list) {
   /* retourner la liste des sujets */
-let listSujets = [];
-for (let element of list) {
-  if ("subject" in element) {
-    listSujets = listSujets.concat(element.subject);
+  let listSujets = [];
+  for (let element of list) {
+    if ("subject" in element) {
+      listSujets = listSujets.concat(element.subject);
+    }
   }
-}
   return listSujets;
 }
 
 const allSujet = allSujets(veilles);
 
 function trieAlpha(list) {
- /* let trieAlpha = [];
-  for (let trie of list) {
-    trieAlpha.push(trie.subject);
-  }
-  trieAlpha.sort();
-  return trieAlpha; */
-  return list.sort((a, b) => (a > b ? 1 : -1 ));
+  return list.sort((a, b) => (a > b ? 1 : -1));
 }
-
-//const triesSujets = trieAlpha(allSujet);
 
 function trieLetinverse(list) {
   const trieInverse = trieAlpha.sort((right, left) => {
@@ -162,24 +151,3 @@ function trieLetinverse(list) {
   });
   return trieInverse;
 }
-
-
-/* function getSelectedValue() {
-  let selectedValue = document.getElementById("inputSort").value;
-  console.log(selectedValue);
-} */
-
-/* fonction qui retourne l'array des veilles à venir */
-
-/* function veillesavenir (list) {
-  const dateN = moment();
-  const dateFormat = "DD/MM/YYYY";
-  let listVeillesavenir = [];
-  list.forEach((el) => {
-  if (moment(el.date, dateFormat)> moment($dateN, dateFormat)) {
-    listVeillesavenir.push(el);
-  }
-});
-return listVeillesavenir;
-}
-console.log(veillesavenir(veilles)); */
